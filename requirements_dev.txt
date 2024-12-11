@@ -4,3 +4,4 @@ black
 mutagen
 tinymongo
 tinydb
+python-dotenv
