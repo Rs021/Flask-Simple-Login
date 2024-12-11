@@ -1,0 +1,8 @@
+flask~=3.1.0
+flask-login~=0.6.3
+flask-mysql
+mysqlclient
+mysql-connector
+tinymongo~=0.2.0
+tinydb~=4.8.2
+Flask-SQLAlchemy
