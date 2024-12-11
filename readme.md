@@ -1,1 +1,0 @@
-Template by: https://github.com/StartBootstrap/startbootstrap-blog-home
