@@ -3,7 +3,7 @@ from flask_login import login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from hashlib import sha256
 from routes.home import *
-from models.db import User, db
+from models.User import User, db
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -50,6 +50,7 @@ def login():
 
 
 @auth_bp.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('auth.login'))

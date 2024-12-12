@@ -2,7 +2,8 @@ from flask import Flask
 from routes.auth import auth_bp
 from routes.home import main_bp
 from flask_login import LoginManager
-from models.db import User, db as user_db
+from models.User import User, db as user_db
+from routes.pages.pages import pages_bp
 from dotenv import load_dotenv
 import os
 
@@ -34,14 +35,14 @@ def create_app():
 
 
     # Registrar o loader de usuário
-
     @login_m.user_loader
     def user_loader(id):
         return User.query.get(int(id))
 
     # Registrar a blueprint
     app.register_blueprint(auth_bp)
-
     app.register_blueprint(main_bp)
-    app.add_url_rule('/', endpoint='index')
+    app.register_blueprint(pages_bp)
+
+    #app.add_url_rule('/', endpoint='index')
     return app
