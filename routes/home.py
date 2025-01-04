@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for
+from flask import Blueprint, render_template, url_for, request
 from flask_login import login_required, current_user
 from models.Blog import Blog, db
 
@@ -21,9 +21,12 @@ def index(id):
     total_posts = db.session.query(Blog).count()
     total_pages = (total_posts + pp - 1) // pp
 
+    db.session.close()
+
     return render_template('blog/index.html',
                             posts=posts,
                            page=id,
                            total_pages=total_pages,
-                           total_posts = total_posts
+                           total_posts = total_posts,
+                           path=request.path
                            )

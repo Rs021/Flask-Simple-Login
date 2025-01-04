@@ -13,8 +13,9 @@
 
     <h3>Author: {{ post.owner }}</h3>
     <h3>Title: Simple Title</h3>
-
-    <h3>{{ post.content }}</h3>
+    <div class="article">
+    {{ post.content|safe }}
+    </div>
     </div>
     {% endblock %}
 </body>

@@ -1,0 +1,22 @@
+{% extends 'pages/page_base.html'  %}
+
+{% block content %}
+<html>
+
+<head>
+    <title>Create New Post</title>
+</head>
+    <form method="POST">
+        <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Title</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="A title" name="title" >
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">the Post Content</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
+</div>
+        <input class="btn btn-primary" type="submit" value="Submit" id="sub-btn">
+
+    </form>
+</html>
+{% endblock %}

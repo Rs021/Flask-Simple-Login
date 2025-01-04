@@ -1,7 +1,6 @@
 from flask import request, redirect, url_for
 from flask_login import login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
-from hashlib import sha256
 from routes.home import *
 from models.User import User, db
 
@@ -14,9 +13,9 @@ def register():
     if request.method == 'GET':
         return """
             <form method="POST">
-                <input type="text" name="user">
-                <input type="text" name="pass">
-                <input type="submit" value="Enviar">
+                <input type="text" name="user" id="user">
+                <input type="text" name="pass" id="pass">
+                <input type="submit" value="Enviar" id="sub">
                 
             </form>
         """
@@ -26,8 +25,9 @@ def register():
     new_user = User(username=username, password=generate_password_hash(password))
     db.session.add(new_user)
     db.session.commit()
+    db.session.close()
 
-    return redirect(url_for('main.index'))
+    return redirect(url_for('auth.login'))
 
 @auth_bp.route("/", methods=['GET', 'POST'])
 def login():
@@ -45,6 +45,7 @@ def login():
         return render_template("login.html", title="A Simple Page")
 
 
+    db.session.close()
     login_user(user)
     return redirect(url_for('blog.index'))
 
